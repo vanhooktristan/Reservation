@@ -98,6 +98,28 @@
 
   </div>
 
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#create-button").on("click", function(event) {
+      event.preventDefault();
+
+      var newReservation = {
+        customerName: $("#name").val().trim(),
+        phoneNumber: $("#phone-number").val().trim(),
+        customerEmail: $("#email").val().trim(),
+        customerID: $("#list-id").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/tables", newReservation)
+        .then(function(data) {
+          console.log(data);
+          alert("Adding Reservation...");
+        });
+
+    });
+  </script>
+
   <!-- jQuery JS -->
   <script src="https://code.jquery.com/jquery.js"></script>
 
