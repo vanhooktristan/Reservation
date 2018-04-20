@@ -35,10 +35,8 @@
       <hr>
       <p style="text-align: center">Make your reservation</p>
       <div style="text-align: center">
-        <a href="/view">
-          <button type="button" class="btn btn-primary btn-lg" style="background-color: blue">View Tables</button>
-          <button type="button" class="btn btn-primary btn-lg" style="background-color: white, color: black">Home</button>
-        </a>
+        <a href="/view"><button type="button" class="btn btn-primary btn-lg" style="background-color: blue">View Tables</button></a>
+        <a href="/"><button type="button" class="btn btn-primary btn-lg" style="background-color: white, color: black">Home</button></a>
       </div>
     </div>
 
@@ -78,7 +76,7 @@
           </div>
             
           <!-- Here we have our final submit button -->
-          <button type="submit" class="btn btn-default" id="create-button">Submit</button>
+          <button type="submit" class="btn btn-default" id="create">Submit</button>
           <button type="button" class="btn btn-default" id="clear-all">
             <i class="fa fa-trash"></i> Clear Results</button>
 
@@ -98,9 +96,15 @@
 
   </div>
 
-  <script type="text/javascript">
+
+
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+    <script type="text/javascript">
     // Question: What does this code do?
-    $("#create-button").on("click", function(event) {
+
+    $("#create").on("click", function(event) {
       event.preventDefault();
 
       var newReservation = {
@@ -119,9 +123,6 @@
 
     });
   </script>
-
-  <!-- jQuery JS -->
-  <script src="https://code.jquery.com/jquery.js"></script>
 
   <!-- Code to the JavaScript File -->
   <script src="server.js"></script>
