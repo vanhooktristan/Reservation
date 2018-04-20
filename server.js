@@ -21,6 +21,12 @@ var tables = [
     phoneNumber: "717-587-3625",
     customerEmail: "yoda@farfaraway.com",
     customerID: "hungryIam"
+  },
+  {
+    customerName: "Han Solo",
+    phoneNumber: "717-587-3625",
+    customerEmail: "solo@kesselrun.com",
+    customerID: "leiasbae"
   }
 ];
 
@@ -28,7 +34,7 @@ var waitList = [
   {
     customerName: "Darth Maul",
     phoneNumber: "666-987-6543",
-    customerEmail: "yoda@sithempire.com",
+    customerEmail: "maulster@sithempire.com",
     customerID: "twosabers"
   }
 ];
@@ -49,7 +55,6 @@ app.get("/view", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
 });
 
-// Search for Specific Character (or all characters) - provides JSON
 app.get("/api/tables", function(req, res) {
   return res.json(tables);
 });
@@ -57,7 +62,7 @@ app.get("/api/tables", function(req, res) {
 app.get("/api/waitlist", function(req, res) {
   return res.json(waitList);
 });
-// Create New Characters - takes in JSON input
+
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware

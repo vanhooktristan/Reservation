@@ -35,8 +35,12 @@
       <hr>
       <p style="text-align: center">Current Reservations and Waiting List</p>
       <div style="text-align: center">
-        <a href="/create"><button type="button" class="btn btn-primary btn-lg" style="background-color: red">Make a Reservation</button></a>
-        <a href="/"><button type="button" class="btn btn-primary btn-lg" style="background-color: white, color: black">Home</button></a>
+        <a href="/create">
+          <button type="button" class="btn btn-primary btn-lg" style="background-color: red">Make a Reservation</button>
+        </a>
+        <a href="/">
+          <button type="button" class="btn btn-primary btn-lg" style="background-color: white; color: black">Home</button>
+        </a>
       </div>
     </div>
 
@@ -53,10 +57,19 @@
               <strong>Current Reservations</strong>
             </h3>
           </div>
-
-          <!-- This main panel will hold each of the resulting articles -->
-          <div class="panel-body" id="current-list">
-          </div>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">email</th>
+                <th scope="col">unique ID</th>
+              </tr>
+            </thead>
+            <tbody class="table_reserve">
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -74,10 +87,20 @@
               <strong>Waiting List</strong>
             </h3>
           </div>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">email</th>
+                <th scope="col">unique ID</th>
+              </tr>
+            </thead>
+            <tbody class="table_wait">
+            </tbody>
+          </table>
 
-          <!-- This main panel will hold each of the resulting articles -->
-          <div class="panel-body" id="waiting-list">
-          </div>
         </div>
       </div>
     </div>
@@ -101,6 +124,45 @@
 
   <!-- Code to the JavaScript File -->
   <script src="server.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $.get("/api/tables", function (data) {
+        console.log(data);
+        generateTable(".table_reserve", data)
+      });
+
+      $.get("/api/waitlist", function (data) {
+        console.log(data);
+        generateTable(".table_wait", data)
+      });
+
+
+      function generateTable(classId, data) {
+        $(classId).empty();
+        for (i = 0; i < data.length; i++) {
+
+          var tBody = $(classId);
+          var tRow = $("<tr>");
+
+          var indexTh = $("<th>")
+            .attr("scope", "row")
+            .text(i + 1 + ".");
+
+          var nameTd = $("<td>").text(data[i].customerName);
+          var numberTd = $("<td>").text(data[i].phoneNumber);
+          var mailTd = $("<td>").text(data[i].customerEmail);
+          var idTd = $("<td>").text(data[i].customerID);
+
+          tRow.append(indexTh, nameTd, numberTd, mailTd, idTd);
+          tBody.append(tRow);
+        };
+
+      };
+
+    });
+  </script>
 
 </body>
 
